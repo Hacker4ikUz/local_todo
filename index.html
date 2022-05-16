@@ -14,10 +14,10 @@
                 <input type="text" placeholder="Поиск задачи">
                 <img src="./img/search_icon.png" alt="search-ico" width="22px">
             </div>
-            <select>
-                <option>All todo</option>
-                <option>Not done</option>
-                <option>Done</option>
+            <select id="selectbox" onchange="changeFunc();">
+                <option value="1">All todo</option>
+                <option value="2">Not done</option>
+                <option value="3">Done</optiont>
             </select>
             <button class="create">Создать задачу</button>
         </div>
@@ -32,6 +32,7 @@
     
     <div class="contt">
         <div class="container"></div>
+        <div class="isdone"></div>
         <div class="done"></div>
     </div>
     
