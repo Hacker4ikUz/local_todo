@@ -1,6 +1,7 @@
 let cont = document.querySelector('.container')
 let form = document.forms.todo
 let done = document.querySelector('.done')
+let isdone = document.querySelector('.isdone')
 let inputs = form.querySelectorAll('input')
 let theinp = document.querySelector('.theinp')
 let btn = document.querySelector('.btn')
@@ -39,6 +40,24 @@ let donee = [
     {
         id: Math.random(),
         task: 'Урок...',
+        time: "20:00",
+        isChecked: true
+    },
+    {
+        id: Math.random(),
+        task: 'Lorem...',
+        time: "15:00",
+        isChecked: true
+    },
+    {
+        id: Math.random(),
+        task: 'Ipsum...',
+        time: "16:00",
+        isChecked: true
+    },
+    {
+        id: Math.random(),
+        task: 'Dolor...',
         time: "20:00",
         isChecked: true
     }
@@ -102,27 +121,16 @@ function reload(arr) {
         divch.style.alignItems = 'center'
         hr.classList.add('hr')
 
-        // done.append(hr)
         divch.append(check,span)
         div.append(left)
         left.append(h3, i, divch)
         cont.append(div,done)
-
-        // img.onclick = (e) => {
-        //     let id = e.target.parentNode.id
-
-        //     let idx = tasks.findIndex(elem => elem.id == item.id)
-
-        //     tasks.splice(idx, 1)
-
-        //     reload(tasks)
-        // }
-
+        
         // donee 
         restart(donee)
 
         function restart(donee) {
-            done.innerHTML = ""
+            isdone.innerHTML = ""
             for(let elem of donee){
                 let thedone = document.querySelector('.thedone')
                 let div = document.createElement('div')
@@ -149,8 +157,8 @@ function reload(arr) {
         
                 divch.append(check,span)
                 div.append(left)
-                left.append(h3, i, divch)
-                done.append(div)
+                left.append(h3, i,divch)
+                isdone.append(div)
             }
         }
         check.onclick = (e) => {
@@ -162,10 +170,24 @@ function reload(arr) {
             reload(tasks)
             not.innerHTML = "Is not done: " + tasks.length
             restart(donee)
-            if(tasks.length === 0){
-                
-            }
-
         }
+    }
+}
+
+
+// select option :)
+function changeFunc() {
+    let selectbox = document.getElementById('selectbox')
+    let selectedvalue = selectbox.options[selectbox.selectedIndex].value
+    if(selectedvalue == '2'){
+        reload(tasks)
+        isdone.innerHTML = ''
+        thedone.innerHTML = ''
+    }else if(selectedvalue == '3'){
+        cont.innerHTML = ''
+        restart(donee)
+    }else if(selectedvalue == '1') {
+        reload(tasks)
+        restart(donee)
     }
 }
