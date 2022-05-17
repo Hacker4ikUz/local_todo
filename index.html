@@ -19,12 +19,13 @@
                 <option value="2">Not done</option>
                 <option value="3">Done</optiont>
             </select>
-            <button class="create">Создать задачу</button>
+            <button class="btn_create">Создать задачу</button>
         </div>
         <div class="center">
             <h1>TODO</h1>
         </div>
     </form>
+    
     <div class="new">
         <div class="not"></div>
         <div class="thedone"></div>
@@ -35,7 +36,27 @@
         <div class="isdone"></div>
         <div class="done"></div>
     </div>
-    
+    <div class="modal">
+        <div class="modal-window">
+            <form name="fcreate">
+                <div class="formcreate">
+                    <h1>Создать задачу</h1>
+                    <input type="text" placeholder="Name" name="task">
+                    <input type="time" placeholder="Time" name="time">
+                    <select id="selecttwo">
+                        <option value="1">
+                            Is done
+                        </option>
+                        <option value="2">
+                            Is not done
+                        </option>
+                    </select>
+                    <button>Создать задачу</button>
+                </div>
+            </form>
+        </div>
+        <div class="overlay"></div>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>
