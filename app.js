@@ -1,10 +1,14 @@
 let cont = document.querySelector('.container')
 let form = document.forms.todo
+let form2 = document.forms.fcreate
 let done = document.querySelector('.done')
 let isdone = document.querySelector('.isdone')
 let inputs = form.querySelectorAll('input')
 let theinp = document.querySelector('.theinp')
 let btn = document.querySelector('.btn')
+let btncreate = document.querySelector('.btn_create')
+let modal = document.querySelector('.modal')
+let overlay = document.querySelector('.overlay')
 let tasks = [
     {
         id: Math.random(),
@@ -63,10 +67,15 @@ let donee = [
     }
 ]
 
-
-form.onsubmit = (event) => {
-    event.preventDefault()
-
+btncreate.onclick = (e) => {
+    e.preventDefault()
+    modal.style.display = 'flex'
+}
+overlay.onclick = () => {
+    modal.style.display = 'none'
+}
+form2.onsubmit = (e) => {
+    e.preventDefault()
     submit()
 }
 
@@ -75,14 +84,21 @@ function submit() {
         id: Math.random()
     }
 
-    let fm = new FormData(form)
+    let fm = new FormData(form2)
 
     fm.forEach((value, key) => {
         user[key] = value
     })
 
-    tasks.push(user);
-    reload(tasks)
+    let sltwo = document.getElementById('selecttwo')
+    let selectedval = sltwo.options[sltwo.selectedIndex].value
+    if(selectedval == '1'){
+        donee.push(user);
+        restart(donee)
+    }else if(selectedval == '2'){
+        tasks.push(user)
+        reload(tasks)
+    }
 }
 
 reload(tasks)
@@ -185,9 +201,13 @@ function changeFunc() {
         thedone.innerHTML = ''
     }else if(selectedvalue == '3'){
         cont.innerHTML = ''
+        thedone.innerHTML = ''
         restart(donee)
     }else if(selectedvalue == '1') {
         reload(tasks)
+        restart(donee)
+    }
+    if(selectedvalue == '3'){
         restart(donee)
     }
 }
